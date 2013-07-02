@@ -1,0 +1,130 @@
+/* Structure
+-------------------------------------------------------------- */
+/*Clearfixing main elements*/
+body:before,
+body:after,
+#page:before,
+#page:after,
+header:before,
+header:after,
+#main:before,
+#main:after {
+    content:"";
+    display:table;
+}
+body:after,
+#page:after,
+header:after,
+#main:after {
+    clear:both;
+}
+body,
+#page,
+header,
+#main {
+    zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+
+#page {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -200px; /* negative margin of footer height */
+    position: relative;
+    padding: 0 52px;
+}
+
+/*
+Sticky Footer by Ryan Fait
+http://ryanfait.com/
+*/
+
+#footer, .push {
+    height: 200px; /* .push must be the same height as .footer */
+}
+
+.push {
+    width: 100%;
+    overflow: hidden; /*clearfix*/
+}
+
+#footer {
+    width: 100%;
+    background-color: #222222;
+}
+
+#main {
+    max-width: 1140px;
+    margin: 0 auto 30px;
+}
+
+/* General
+-------------------------------------------------------------- */
+body {
+background: #111;
+color: #999;
+margin: 0;
+padding: 0;
+text-align: center;
+}
+
+a {
+color: #f15858;
+}
+
+header {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+header #logo {
+    margin-bottom: 10px;
+}
+
+header #logo h1,
+header #logo h2 {
+    display: inline;
+    text-align: center;
+}
+
+header #menu-top-nav {
+    margin-bottom: 10px;
+}
+
+header #menu-top-nav li {
+    margin-right: 10px;
+    display: inline;
+    text-align: center;
+}
+
+body.home .metaslider {
+    width: 100%;
+}
+
+body.home li.on-tour a {
+    color: #FAAAAA;
+}
+
+body.category-artists #articles article {
+    width: 356px;
+    margin: 0 10px 10px;
+    float: left;
+}
+
+body.category-artists #articles article a {
+    width: 356px;
+    height: 248px;
+    background-color: #222222;
+    display: block;
+}
+
+body.category-artists #articles article.on-tour {
+    color: #FAAAAA;
+}
