@@ -137,6 +137,8 @@ add_theme_support( 'post-thumbnails' );
 // Adding Custom Thumbnail Size
 add_image_size( 'artist-thumbnail', 356, 248, true );
 
+// Adding Custom Image Size
+add_image_size( 'artist-detail', 786, 420, true );
 
 // // Alter the Loop for homepage
 // function most_recent_post( $query ) {
@@ -150,17 +152,35 @@ add_image_size( 'artist-thumbnail', 356, 248, true );
 
 // Add "last" class to last post in loop
 add_filter('post_class', 'my_post_class');
-
-
 function my_post_class($classes){
     global $wp_query;
     if(($wp_query->current_post+1) == $wp_query->post_count) $classes[] = 'last';
     return $classes;
 }
 
+// Add category class to body in single posts
+add_filter('body_class','add_category_to_single');
+function add_category_to_single($classes) {
+     if ( is_single() ) {
+        global $post;
+        foreach((get_the_category($post->ID)) as $category) {
+            // add category slug to the $classes array
+            $classes[] = $category->category_nicename;
+        }
+     }
+     
+     if ( is_page() ) {
+        global $post;
+        // add page title to the $classes array
+        $classes[] = 'page-' . $post->post_name;
+     }
+     
+     // return the $classes array
+     return $classes;
+}
+
 // Prevent from adding link to inserted imgaes
 update_option('image_default_link_type','none');
-
 
 /**
  * This theme was built with PHP, Semantic HTML, CSS, love, and a Toolbox.
