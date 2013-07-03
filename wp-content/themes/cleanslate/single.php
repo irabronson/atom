@@ -12,6 +12,9 @@
 <section id="content">
     
 <?php
+    // Sidebar defaults to none
+    $sidebar = false;
+    
     if ( have_posts() ) :
 ?>
     <div id="articles">
@@ -25,22 +28,36 @@
             
         elseif( in_category('blog') ) :
             
+            // Set Sidebar to load
+            $sidebar = true;
+            
             while ( have_posts() ) : the_post();
-                get_template_part('content', 'artists-detail' );
+                get_template_part('content', 'blog-detail' );
             endwhile;
+            
+        endif;
     ?>
     
     </div>
     
-    <?php
-        else :
-            // Content Not Found Template
-            include('content-not-found.php');
-        
-        endif;
+<?php
+    else :
+        // Content Not Found Template
+        include('content-not-found.php');
     
-    ?>
+    endif;
+
+?>
     
-    </section>
+<?php
+    
+    // Load Sidebar
+    if( $sidebar === true ) {
+        get_sidebar();
+    }
+    
+?>
+    
+</section>
     
 <?php get_footer(); ?>
