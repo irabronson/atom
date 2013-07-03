@@ -91,6 +91,9 @@
                     <?php
                         if( is_home() || is_page('home') ) :
                             echo 'Home';
+                        elseif( in_category('artists') || in_category('blog') ) :
+                            $category = get_the_category();
+                            echo $category[0]->name;
                         else :
                             wp_title('');
                         endif;
