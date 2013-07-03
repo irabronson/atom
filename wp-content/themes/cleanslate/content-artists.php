@@ -17,7 +17,7 @@
     $artist_query = new WP_Query($args);
     
     // The Loop
-    if ( $artist_query->have_posts() ) {
+    if ( $artist_query->have_posts() ) :
         
         $onTourCount = 0;
         
@@ -36,29 +36,34 @@
             <!-- Artist: <?php the_title(); ?> -->
             <article id="post-<?php the_ID(); ?>" class="<?php echo $onTourClass; ?>">
                 
+                <!-- Artist Link -->
                 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
                     
-                <!-- Thumbnail image -->
+                    <!-- Artist Thumbnail -->
+                    <figure>
                 <?php
                     $thumb = get_thumbnail_custom($post->ID, 'artist-thumbnail');
                     
                     if( $thumb ) {
-                        
                         echo '<img src="' . $thumb[0] . '" width="356" height="248" alt="' . get_the_title() . '"/>';
-                        
                     }
                 ?>
-                
+                    </figure>
+                    
+                    <!-- Artist Title -->
+                    <p>
+                        <?php the_title(); ?>
+                    </p>
+                    
                 </a>
-                <h4><?php the_title(); ?>
             </article>
             
 <?php
         endwhile;
         
-    } else {
+    else :
         // no posts found
-    }
+    endif;
     
     // Restore original Post Data
     wp_reset_postdata();
