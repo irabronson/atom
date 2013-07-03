@@ -8,10 +8,12 @@
 ?>
 
 <!-- Slideshow -->
+<section class="primary">
 <?php echo do_shortcode("[metaslider id=64]"); ?>
+</section>
 
 <!-- Artist Listing -->
-<section>
+<section class="secondary">
     <h2>Aggressive Publicity and Music Marketing</h2>
         
         <?php
@@ -79,7 +81,7 @@
 </section>
 
 <!-- In-site links -->
-<section>
+<section class="tertiary">
     <ul>
         <li>
             <!-- Sevices -->
