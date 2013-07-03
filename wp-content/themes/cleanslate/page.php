@@ -19,6 +19,8 @@ get_header(); ?>
                 
                 if( is_home() || is_page('home') ) :
                     $template = 'home';
+                elseif( is_page('about') ) :
+                    $template = 'about';
                 else :
                     $template = 'page';
                 endif;
