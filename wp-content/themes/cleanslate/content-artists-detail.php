@@ -34,6 +34,133 @@
     ?>
     </figure>
     
+    
+    <?php
+        // SOCIAL MEDIA LINKS
+        // Create array of social media links
+        $socials = array(
+            'bandcamp' => array(
+                'class' => 'bandcamp',
+                'link' => get_field('bandcamp')
+            ),
+            'facebook' => array(
+                'class' => 'facebook',
+                'link' => get_field('facebook')
+            ),
+            'instagram'=> array(
+                'class' => 'instagram',
+                'link' => get_field('instagram')
+            ),
+            'instagram' => array(
+                'class' => 'instagram',
+                'link' => get_field('instagram')
+            ),
+            'itunes' => array(
+                'class' => 'itunes',
+                'link' => get_field('itunes')
+            ),
+            'lastfm' => array(
+                'class' => 'lastfm',
+                'link' => get_field('lastfm')
+            ),
+            'soundcloud' => array(
+                'class' => 'soundcloud',
+                'link' => get_field('soundcloud')
+            ),
+            'tumblr' => array(
+                'class' => 'tumblr',
+                'link' => get_field('tumblr')
+            ),
+            'twitter' => array(
+                'class' => 'twitter',
+                'link' => get_field('twitter')
+            ),
+            'youtube' => array(
+                'class' => 'youtube',
+                'link' => get_field('youtube')
+            )
+        );
+        
+        // Check for social media links
+        if( $socials ) {
+    ?>
+        <!-- Social Media Links -->
+        <ul class="social-links">
+    <?php
+            
+            $socialCount = 1;
+            foreach( $socials as $social ) :
+                
+                // Display Links
+                // Only allow up to six social links
+                if( $social['link'] && $socialCount <= 6 ) {
+    ?>
+                <!-- Link for <?php echo $social['class']; ?> -->
+                <li>
+                    <a href="<?php echo $social['link']; ?>" class="<?php echo $social['class']; ?>">
+                        
+                        <!-- IRA: This is just a placeholder, you can delete this block of code -->
+                        <!-- BEGIN -->
+                        <?php 
+                            echo $socialCount . ') ' . $social['class'];
+                        ?>
+                        <!-- END -->
+                        
+                    </a>
+                </li>
+                
+    <?php
+                    $socialCount++;
+                }
+                
+            endforeach;
+    ?>
+        </ul>
+    <?php
+        }
+    ?>
+    
+    <?php
+        
+        // PRESS MATERIALS
+        // Check for press materials
+        
+        $pressMaterials = get_field('press_materials');
+        
+        if( $pressMaterials ) {
+    ?>
+        <!-- Press Materials -->
+        <h3>Download Press Materials</h3>
+        <ul class="press-materials">
+            
+    <?php
+            $i = 1;
+            
+            foreach( $pressMaterials as $pressMaterial ) :
+    ?>
+                <!-- Link for Press Material <?php echo $i; ?> -->
+                <li>
+                    <a href="<?php echo $pressMaterial['press_material_file']['url']; ?>" target="_blank">
+                        
+                        <?php 
+                            echo $pressMaterial['press_material_title'];
+                        ?>
+                        
+                    </a>
+                </li>
+                
+    <?php
+                $i++;
+            endforeach;
+    ?>
+        </ul>
+    <?php
+        }
+    ?>
+    
+    
+    
+    
 </section>
 
 <section class="secondary">
@@ -45,6 +172,7 @@
         <h3>About</h3>
         
     <?php
+        // OFFICIAL SITE
         // Check for Official Site
         if( get_field('official_site') ) {
     ?>
@@ -64,6 +192,7 @@
     </div>
     
     <?php
+        // PRESS CLIPS
         // Check for Press Clips
         
         $pressClips = get_field('press_clips');
@@ -143,7 +272,8 @@
     
     
     <?php
-        // Check for Related Artist
+        // RELATED ARTISTS
+        // Check for Related Artists
         $values = get_post_custom( $post->ID );
         
         $artistKey = str_replace('-', '_', $post->post_name);
@@ -166,6 +296,7 @@
     ?>
     
     <?php
+        // TWITTER
         // Check for Twitter
         $twitter = true;
         
@@ -173,12 +304,25 @@
         
     ?>
     
-    <!-- Related Blog Posts Column -->
+    <!-- Twitter Feed Column -->
     <div class="twitter column">
         
         <!-- Header -->
         <h3>Twitter</h3>
         
+        <?php
+            
+        ?>
+        
+        
+        <script type="text/javascript">
+            var getTweetsURL = templateDirectoryUrl + '/php/get-tweets.php';
+            var currentProfile = 'farawaybeaches';
+            var currentSN = 'Lucy';
+            var noOfTweets = 1;
+            
+            twitterFeed(getTweetsURL, currentProfile, currentSN, noOfTweets);
+        </script
         
     </div>
     
@@ -187,14 +331,15 @@
     ?>
     
     <?php
-        // Check for Tour
+        // TOUR
+        // Check for tour
         $tour = true;
         
         if( $tour ) {
         
     ?>
     
-    <!-- Related Blog Posts Column -->
+    <!-- Tour Dates Column -->
     <div class="tour column">
         
         <!-- Header -->
