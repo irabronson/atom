@@ -36,18 +36,11 @@
                 
                 while ( $artist_query->have_posts() ) : $artist_query->the_post();
                     
-                    $onTour = get_field('on_tour');
-                    
-                    if( $onTour === true ) {
-                        $onTourClass = 'on-tour';
-                        
-                        $onTourCount++;
-                    } else {
-                        $onTourClass = 'not-on-tour';
-                    }
+                    $band = get_the_title();
+                    $bandSlug = urlencode(strtolower($band));
         ?>
                     <!-- Artist: <?php the_title(); ?> -->
-                    <li class="<?php echo $onTourClass; ?>">
+                    <li class="artist" data-band="<?php echo $bandSlug; ?>" data-id="<?php echo $post->ID; ?>">
                         <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
                             <?php the_title(); ?>
                         </a>
