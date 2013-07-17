@@ -51,7 +51,30 @@
                 var templateDirectoryUrl = '<?php echo get_template_directory_uri(); ?>';
             </script>
             <!-- <script src="<?php echo get_template_directory_uri(); ?>/js/modernizr.js" type="text/javascript"></script> -->
+            <script src="<?php echo get_template_directory_uri(); ?>/js/main.js" type="text/javascript"></script>
             <script src="<?php echo get_template_directory_uri(); ?>/js/twitterfeed.js" type="text/javascript"></script>
+            <script src="<?php echo get_template_directory_uri(); ?>/js/tour-dates.js" type="text/javascript"></script>
+        <?php
+            if( is_home() || is_page('home') ) {
+        ?>
+            <script src="<?php echo get_template_directory_uri(); ?>/js/tour-dates-check.js" type="text/javascript"></script>
+        <?php
+            }
+        ?>
+        
+        <?php
+            if( is_single() && in_category('artists') ) {
+                $title = get_the_title();
+                $band = urlencode(strtolower($title));
+        ?>
+            <script type="text/javascript">
+                var currentBand = '<?php echo $band; ?>';
+                var currentID = '<?php echo $post->ID; ?>';
+            </script>
+            <script src="<?php echo get_template_directory_uri(); ?>/js/tour-dates-show.js" type="text/javascript"></script>
+        <?php
+            }
+        ?>
             
     </head>
     
