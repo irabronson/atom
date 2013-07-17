@@ -5,7 +5,7 @@ function get_latest_tweet($currentUser) {
     require_once("../../../plugins/twitteroauth-master/twitteroauth/twitteroauth.php"); //Path to twitteroauth library
     
     $twitteruser = $currentUser;
-    $notweets = 30;
+    $notweets = 1;
     $consumerkey = "vuSdazrx1adO29uiJQ5TsQ";
     $consumersecret = "FVbuk07uWG1AbPJGPqxqGsRLLcWlQ7OB3HTHdHw";
     $accesstoken = "1356308496-7G0brU2g3sCaUHquPYW3kvqg26NHOrlhmGJUaCG";
