@@ -279,7 +279,7 @@
         $artistKey = str_replace('-', '_', $post->post_name);
         $artistID = $artistKey . '_check';
         
-        if( $values[$artistID] ) {
+        // if( $values[$artistID] ) {
         
     ?>
     
@@ -292,7 +292,7 @@
         
     </div>
     <?php
-        }
+        // }
     ?>
     
     <?php
@@ -313,16 +313,15 @@
         <?php
             
         ?>
-        
+        <div id="twitter-feed"></div>
         
         <script type="text/javascript">
             var getTweetsURL = templateDirectoryUrl + '/php/get-tweets.php';
-            var currentProfile = 'farawaybeaches';
-            var currentSN = 'Lucy';
+            var artistProfile = 'farawaybeaches';
             var noOfTweets = 1;
             
-            twitterFeed(getTweetsURL, currentProfile, currentSN, noOfTweets);
-        </script
+            twitterFeed(getTweetsURL, artistProfile, noOfTweets);
+        </script>
         
     </div>
     
@@ -332,24 +331,8 @@
     
     <?php
         // TOUR
-        // Check for tour
-        $tour = true;
-        
-        if( $tour ) {
-        
-    ?>
-    
-    <!-- Tour Dates Column -->
-    <div class="tour column">
-        
-        <!-- Header -->
-        <h3>Tour</h3>
-        
-        
-    </div>
-    
-    <?php
-        }
+        // Content filled dynamically
+        // JS function called in header with show-tour-dates.js
     ?>
     
 </section>
