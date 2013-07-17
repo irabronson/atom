@@ -118,7 +118,7 @@ jQuery(document).ready(function($) {
     };
 
     // AJAX save & preview
-    jQuery(".metaslider form").find(":submit").click(function(e) {
+    jQuery(".metaslider form").find("input[type=submit]").click(function(e) {
         e.preventDefault();
 
         // update slide order
@@ -139,6 +139,9 @@ jQuery(document).ready(function($) {
             cache: false,
             url: url,
             success: function(data) {
+                // update the slides with the response html
+                $(".metaslider .left tbody").html($(".metaslider .left tbody", data).html());
+
                 if (button.id === 'preview') {
                     jQuery.colorbox({
                         iframe: true,
