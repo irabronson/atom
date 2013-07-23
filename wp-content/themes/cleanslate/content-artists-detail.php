@@ -7,16 +7,6 @@
  */
 ?>
 
-<?php
-    
-    // Check for Custom Fields
-    
-    if( get_field('official_site') ) {
-        
-    }
-    
-?>
-
 <section class="primary">
     
     <!-- Artist Image -->
@@ -158,9 +148,6 @@
         }
     ?>
     
-    
-    
-    
 </section>
 
 <section class="secondary">
@@ -279,7 +266,7 @@
         $artistKey = str_replace('-', '_', $post->post_name);
         $artistID = $artistKey . '_check';
         
-        // if( $values[$artistID] ) {
+        if( $values[$artistID] ) {
         
     ?>
     
@@ -292,48 +279,41 @@
         
     </div>
     <?php
-        // }
+        }
     ?>
     
     <?php
         // TWITTER
         // Check for Twitter
-        $twitter = true;
-        
-        if( $twitter ) {
+        //
+        // Twitter column is hidden by CSS
+        // Unless there are tweets
         
     ?>
-    
-    <!-- Twitter Feed Column -->
-    <div class="twitter column">
-        
-        <!-- Header -->
-        <h3>Twitter</h3>
-        
-        <?php
+        <div id="twitter-artist" class="twitter column">
             
-        ?>
-        <div id="twitter-feed"></div>
-        
-        <script type="text/javascript">
-            var getTweetsURL = templateDirectoryUrl + '/php/get-tweets.php';
-            var artistProfile = 'farawaybeaches';
-            var noOfTweets = 1;
+            <!-- Header -->
+            <h3>Twitter</h3>
             
-            twitterFeed(getTweetsURL, artistProfile, noOfTweets);
-        </script>
-        
-    </div>
-    
-    <?php
-        }
-    ?>
+            <!-- Twitter feed will be here -->
+            <div class="tweet"></div>
+            
+        </div>
     
     <?php
         // TOUR
         // Content filled dynamically
-        // JS function called in header with show-tour-dates.js
+        //
+        // Tour column is hidden by CSS
+        // Unless there are tweets
     ?>
-    
+        <!-- Tour Dates Column -->
+        <div class="tour column">
+        <!-- Header -->
+        <h3>Tour</h3>
+        
+        <div class="tour-dates"></div>
+        
+        </div>
+        
 </section>
-    
