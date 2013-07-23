@@ -53,11 +53,15 @@ http://ryanfait.com/
 .push {
     width: 100%;
     overflow: hidden; /*clearfix*/
+    position: relative;
+    z-index: -1;
 }
 
 #footer {
     width: 100%;
     background-color: #222222;
+    position: relative;
+    z-index: 100;
 }
 
 #main {
@@ -113,6 +117,10 @@ body.home .metaslider {
 
 body.home li.on-tour a {
     color: #FAAAAA;
+}
+
+body.home .on-tour-symbol {
+    display: none;
 }
 
 
@@ -194,6 +202,12 @@ body.single.artists #content .column {
     margin: 0 24px 30px 0;
     text-align: left;
     float: left;
+}
+
+/* Initially hide these containers, unless data is available */
+body.single.artists #content .column.twitter,
+body.single.artists #content .column.tour {
+    display: none;
 }
 
 /* About
