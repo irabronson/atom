@@ -15,8 +15,11 @@
 
 <footer id="footer" role="contentinfo">
     
-    <div id="twitter-main">
+    <div id="twitter-footer">
+        
         <!-- Twitter feed will be here -->
+        <div class="tweet"></div>
+        
     </div>
     
     <div>
