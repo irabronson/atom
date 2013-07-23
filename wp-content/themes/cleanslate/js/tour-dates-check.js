@@ -4,15 +4,24 @@ $j(document).ready(function() {
     // Start artists array
     var artists = new Array();
     
+    var onTourCount = 0;
+    
     // Label the band if on tour
-    var labelOnTourHome = function(onTour, currentBand) {
+    var labelOnTour = function(onTour, currentBand) {
         
         // Add .on-tour class to bands on tour
         if( onTour === true ){
             var artistSelector = '.artist[data-band="' + currentBand + '"]';
             $j(artistSelector).addClass('on-tour');
+            
+            onTourCount++;
         }
         
+        // If there is an "On Tour" symbol,
+        // Show it the first time there is a band on tour
+        if( $j('body.home .on-tour-symbol').length > 0 && onTourCount === 1 ) {
+            $j('body.home .on-tour-symbol').show();
+        }
     };
     
     // Success callback for tourDatesFeed() function
@@ -23,11 +32,11 @@ $j(document).ready(function() {
             
             var onTour = true;
             
-            labelOnTourHome(onTour, currentBand);
+            labelOnTour(onTour, currentBand);
         } else {
             // Check for manually added tour dates
             var currentID = artists[currentBand]['id'];
-            tourDatesManualCheck(labelOnTourHome, currentBand, currentID);
+            tourDatesManualCheck(labelOnTour, currentBand, currentID);
         }
         
     };
