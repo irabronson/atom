@@ -55,21 +55,50 @@
             <script src="<?php echo get_template_directory_uri(); ?>/js/twitterfeed.js" type="text/javascript"></script>
             <script src="<?php echo get_template_directory_uri(); ?>/js/tour-dates.js" type="text/javascript"></script>
         <?php
-            if( is_home() || is_page('home') ) {
+            if( is_home() || is_page('home') || is_category('artists') ) {
         ?>
             <script src="<?php echo get_template_directory_uri(); ?>/js/tour-dates-check.js" type="text/javascript"></script>
         <?php
             }
         ?>
         
+        <script type="text/javascript">
+            // Twitter API request URL
+            var getTweetsURL = templateDirectoryUrl + '/php/get-tweets.php';
+            
+            $j(document).ready(function() {
+                
+                // Footer Twitter
+                var footerProfile = 'lrgrrl666';
+                var footerTweetContainer = '#twitter-footer';
+                
+                twitterFeed(getTweetsURL, footerProfile, footerTweetContainer);
+                
+            });
+        </script>
+        
         <?php
             if( is_single() && in_category('artists') ) {
+                
                 $title = get_the_title();
-                $band = urlencode(strtolower($title));
+                $band = rawurlencode(strtolower($title));
+                $artistProfile = (get_field('twitter_user_name') ? get_field('twitter_user_name') : '');
         ?>
             <script type="text/javascript">
+                // Tour Dates variables
                 var currentBand = '<?php echo $band; ?>';
                 var currentID = '<?php echo $post->ID; ?>';
+                
+                // Artist Detail Twitter
+                var artistProfile = '<?php echo $artistProfile; ?>';
+                var artistTweetContainer = '#twitter-artist';
+                
+                // Only display if artistProfile value is set
+                if( artistProfile != '' ) {
+                    
+                    twitterFeed(getTweetsURL, artistProfile, artistTweetContainer);
+                }
+                
             </script>
             <script src="<?php echo get_template_directory_uri(); ?>/js/tour-dates-show.js" type="text/javascript"></script>
         <?php
