@@ -23,25 +23,12 @@ $j(document).ready(function() {
         
         if( onTour === true ){
             
-            // Add column for Tour
-            insertTourColumn();
+            // Un-hide tour column
+            $j('body.artists .tour').show();
             
-            var data = '<ul>';
+            var data = '<p>' + tourDates + '</p>';
             
-            // Using tourDates array passed as argument
-            // Cycle through manually added tour dates
-            for (var i=0; i<tourDates.length; i++) {
-                var tourDate = tourDates[i]['tour_date'];
-                var tourLocation = tourDates[i]['tour_location'];
-                    
-                data += '<li class="tour-date">' + tourDate + '</li>'
-                data += '<li class="tour-location">' + tourLocation + '</li>';
-                
-            }
-            
-            data += '</ul>';
-            
-            // Append tour dates list to Tour Column
+            // // Append tour dates list to Tour Column
             $j('body.artists .tour').append(data);
         }
         
@@ -49,11 +36,17 @@ $j(document).ready(function() {
     
     var showTourDatesFeed = function(feeds, currentBand) {
         
-        // Only Tour Column if "On Tour"
-        if( feeds.length > 1 ){
+        // Only show Tour Column if "On Tour"
+        // Check manually if error or no results
+        if( feeds.errors ){
             
-            // Add column for Tour
-            insertTourColumn();
+            // Check for manually added tour dates
+            tourDatesManualCheck(showTourDatesManual, currentBand, currentID);
+            
+        } else if( feeds.length > 1 ){
+            
+            // Un-hide tour column
+            $j('body.artists .tour').show();
             
             var data = '<ul>';
             
@@ -62,9 +55,9 @@ $j(document).ready(function() {
                 var date = feeds[i].datetime;
                 var dateFormatted = formatDate(date);
                 var location = feeds[i].formatted_location;
+                var venue = feeds[i].venue.name;
                 
-                data += '<li class="tour-date">' + dateFormatted + '</li>'
-                data += '<li class="tour-location">' + location + '</li>';
+                data += '<li>' + dateFormatted + ' ' + venue + ' ' + location + '</li>';
             }
             
             data += '</ul>';
@@ -72,6 +65,7 @@ $j(document).ready(function() {
             // Append tour dates list to Tour Column
             $j('body.artists .tour').append(data);
         } else {
+            
             // Check for manually added tour dates
             tourDatesManualCheck(showTourDatesManual, currentBand, currentID);
         }
