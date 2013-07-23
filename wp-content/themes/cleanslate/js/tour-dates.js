@@ -1,5 +1,4 @@
-//JQuery Twitter Feed. Coded by Tom Elliott @ www.webdevdoor.com (2013) based on https://twitter.com/javascripts/blogger.js
-//Requires JSON output from authenticating script: http://www.webdevdoor.com/php/authenticating-twitter-feed-timeline-oauth/
+// Request tour dates from Band in Town API
 var tourDatesFeed = function(callback, currentBand) {
     
     var band = currentBand;
@@ -16,19 +15,6 @@ var tourDatesFeed = function(callback, currentBand) {
     
 };
 
-// Insert Tour Column HTML when tour dates are available
-var insertTourColumn = function() {
-    var tourColumn = '<!-- Tour Dates Column -->';
-    tourColumn += '<div class="tour column">';
-    tourColumn += '<!-- Header -->';
-    tourColumn += '<h3>Tour</h3>';
-    tourColumn += '</div>';
-    
-    $j(document).ready(function() {
-        $j('body.artists .secondary .column').last().after(tourColumn);
-    });
-};
-
 // Check for manually added tour dates
 var tourDatesManualCheck = function(callback, currentBand, currentID) {
     
@@ -40,7 +26,7 @@ var tourDatesManualCheck = function(callback, currentBand, currentID) {
         
         var onTour = false;
         
-        if( data.length > 0 ){
+        if( data ){
             onTour = true;
         }
         
