@@ -20,37 +20,10 @@
             // The Loop
             while ( $tour_dates_query->have_posts() ) : $tour_dates_query->the_post();
                 
-                $tourDates = get_field('tour_dates');
+                $tourDates = get_field('tour');
                 
+                // Send info back to tourDatesManualCheck
                 if( $tourDates ) {
-                    
-                    // Create new array to filter through data
-                    $newTourDates = array();
-                    
-                    $i = 0;
-                    foreach( $tourDates as $tourDate ) :
-                        
-                        $date = $tourDate['tour_date'];
-                        $dateFormatted = date('M d', strtotime($date));
-                        $location = $tourDate['tour_location'];
-                        
-                        // Only add to array if there is content
-                        if ( $date != '' && $location != '' ) {
-                            
-                            // Add clean data to new array
-                            $newTourDates[$i] = array(
-                                'tour_date' => $dateFormatted,
-                                'tour_location' => $location
-                            );
-                        }
-                        
-                        $i++;
-                        
-                    endforeach;
-                    
-                    // Overwrite old array with new, filtered one
-                    $tourDates = $newTourDates;
-                    
                     echo json_encode($tourDates);
                 } else {
                     echo '';
