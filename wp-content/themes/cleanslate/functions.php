@@ -5,6 +5,20 @@
  * @package CleanSlate
  * @since CleanSlate 0.1
  */
+
+// DEBUGGING
+if(!function_exists('_log')){
+    function _log( $message ) {
+        if( WP_DEBUG === true ){
+            if( is_array( $message ) || is_object( $message ) ){
+                error_log( print_r( $message, true ) );
+            } else {
+                error_log( $message );
+            }
+        }
+    }
+}
+
  if ( ! function_exists( 'cleanslate_setup' ) ):
 /**
 * Sets up theme defaults and registers support for various WordPress features.
