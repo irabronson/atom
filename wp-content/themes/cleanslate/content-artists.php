@@ -19,22 +19,13 @@
     // The Loop
     if ( $artist_query->have_posts() ) :
         
-        $onTourCount = 0;
-        
         while ( $artist_query->have_posts() ) : $artist_query->the_post();
             
-            $onTour = get_field('on_tour');
-            
-            if( $onTour === true ) {
-                $onTourClass = 'on-tour';
-                
-                $onTourCount++;
-            } else {
-                $onTourClass = 'not-on-tour';
-            }
+            $band = get_the_title();
+            $bandSlug = rawurlencode(strtolower($band));
 ?>
             <!-- Artist: <?php the_title(); ?> -->
-            <article id="post-<?php the_ID(); ?>" class="<?php echo $onTourClass; ?>">
+            <article id="post-<?php the_ID(); ?>" class="artist" data-band="<?php echo $bandSlug; ?>" data-id="<?php echo $post->ID; ?>">
                 
                 <!-- Artist Link -->
                 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
