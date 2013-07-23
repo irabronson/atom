@@ -37,7 +37,7 @@
                 while ( $artist_query->have_posts() ) : $artist_query->the_post();
                     
                     $band = get_the_title();
-                    $bandSlug = urlencode(strtolower($band));
+                    $bandSlug = rawurlencode(strtolower($band));
         ?>
                     <!-- Artist: <?php the_title(); ?> -->
                     <li class="artist" data-band="<?php echo $bandSlug; ?>" data-id="<?php echo $post->ID; ?>">
@@ -51,17 +51,8 @@
         
         </ul>
         
-        <?php
-            // If any bands On Tour, show symbol
-            if( $onTourCount > 0 ) {
-        ?>
-            
-            <div class="on-tour-symbol">On Tour Now</div>
-            
-        <?php
-            }
-        ?>
-        
+        <div class="on-tour-symbol">On Tour Now</div>
+                
         <?php
             } else {
                 // no posts found
