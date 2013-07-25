@@ -261,25 +261,65 @@
     <?php
         // RELATED ARTISTS
         // Check for Related Artists
-        $values = get_post_custom( $post->ID );
         
-        $artistKey = str_replace('-', '_', $post->post_name);
-        $artistID = $artistKey . '_check';
+        $args = array(
+            'post_status' => 'publish',
+            'category_name' => 'blog',
+            'meta_key' => 'related_artists',
+            'posts_per_page' => 3
+        );
         
-        if( $values[$artistID] ) {
+        $related_artists = new WP_Query( $args );
         
+        $originalPost = $post;
+        
+        if( $related_artists->have_posts() ) {
+            
+            while ( $related_artists->have_posts() ) : $related_artists->the_post();
+                
+                $values = get_post_meta( $post->ID, 'related_artists');
+                
+                // _log('in array?');
+                // _log($originalPost->ID);
+                
+                $relatedArtistMatchCount = 0;
+                foreach ( $values as $value ) :
+                    
+                    if( in_array($originalPost->ID, $value) ) {
+                        $relatedArtistMatchCount++;
+                    }
+                    
+                endforeach;
+                
+                _log($relatedArtistMatchCount);
+                
+                if ( $relatedArtistMatchCount === 1 ) {
     ?>
-    
-    <!-- Related Blog Posts Column -->
-    <div class="blog column">
-        
-        <!-- Header -->
-        <h3>Related News</h3>
-        
-        
-    </div>
+                <!-- Related Blog Posts Column -->
+                <div class="blog column">
+                    
+                    <!-- Header -->
+                    <h3>Related News</h3>
     <?php
+                }
+                
+                if ( $relatedArtistMatchCount >= 1 ) {
+    ?>
+                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+                    <p><?php the_date('n/d'); ?></p>
+    <?php
+                }
+                
+                if ( $relatedArtistMatchCount === 1 ) {
+    ?>
+                </div>
+    <?php
+                }
+            endwhile;
+            
         }
+        
+        wp_reset_postdata();
     ?>
     
     <?php
