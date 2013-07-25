@@ -117,7 +117,7 @@
         
         $pressMaterials = get_field('press_materials');
         
-        if( $pressMaterials ) {
+        if( $pressMaterials['press_material_title'] != '' && $pressMaterials['press_material_file'] != '' ) {
     ?>
         <!-- Press Materials -->
         <h3>Download Press Materials</h3>
@@ -184,7 +184,7 @@
         
         $pressClips = get_field('press_clips');
         
-        if( $pressClips ) {
+        if( $pressClips['press_quote'] != '' || $pressClips['press_author'] != '' || $pressClips['press_link'] != '' ) {
     ?>
     
     <!-- Press Clips Column -->
