@@ -47,17 +47,15 @@ function get_post_meta_artists($object) {
             
             // Artists values
             $artistKey = str_replace('-', '_', sanitize_title( $artist->post_name ) ) . '_check';
-            // $artistID = $artistKey . '_check';
             $artistID = $artist->ID;
             $artistTitle = $artist->post_title;
-            // $artistCheck = isset( $values[0][$artistID] ) ? esc_attr( $values[0][$artistID] ) : 'off';
             
             // _log($artistTitle);
             
             if ( isset( $values[0][$artistKey] ) ) :
                 $artistCheck = is_numeric( $values[0][$artistKey] ) ? 'on' : 'off';
                 
-                // _log('is set');
+                // _log('Is Set');
                 // _log($artistCheck);
                 
             else :
@@ -86,7 +84,7 @@ function get_post_meta_artists($object) {
 /* Display the post meta box. */
 function related_artists_meta_box( $object, $box ) {
     
-    // _log('printing');
+    // _log('Printing');
     
     wp_nonce_field( basename( __FILE__ ), 'related_artists_nonce' );
 ?>
@@ -125,7 +123,7 @@ function save_related_artists_meta() {
     global $post;
     $post_id = $post->ID;
     
-    // _log('save post');
+    // _log('Save Post');
     // _log($post_id);
     
     /* Verify the nonce before proceeding. */
@@ -145,23 +143,17 @@ function save_related_artists_meta() {
         // $artistKey = $artist['id'];
         $artistKey = $artist['slug'];
         $artistID = $artist['id'];
-        // $chk = isset( $_POST[$artistKey] ) ? 'on' : 'off';
-        
-        // add_post_meta( $post_id, $artistKey, $chk, true );
-        // update_post_meta( $post_id, $artistKey, $chk );
         
         // _log($artist);
         
         /* Get the posted data and sanitize it for use as an HTML class. */
-        // $related_artist_value = ( isset( $_POST[$artistKey] ) ? 'on' : 'off' );
         $related_artist_value = ( isset( $_POST[$artistKey] ) ? $artistID : '' );
         
-        // _log('key');
+        // _log('Key');
         // _log($artistKey);
         // _log('Value');
         // _log($related_artist_value);
         
-        // $relatedArtists[$artistKey] = $related_artist_value;
         $relatedArtists[$artistKey] = $related_artist_value;
         
     endforeach;
