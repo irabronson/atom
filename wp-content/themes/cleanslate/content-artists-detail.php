@@ -273,27 +273,33 @@
         
         $originalPost = $post;
         
+        // If any related posts, at all
         if( $related_artists->have_posts() ) {
             
+            $related_artist_matches = array();
+            _log($related_artists);
+            // Find posts that match to this artist
             while ( $related_artists->have_posts() ) : $related_artists->the_post();
                 
                 $values = get_post_meta( $post->ID, 'related_artists');
                 
-                // _log('in array?');
-                // _log($originalPost->ID);
-                
-                $relatedArtistMatchCount = 0;
                 foreach ( $values as $value ) :
                     
                     if( in_array($originalPost->ID, $value) ) {
-                        $relatedArtistMatchCount++;
+                        $related_artist_matches[] = $post;
                     }
                     
                 endforeach;
                 
-                _log($relatedArtistMatchCount);
+            endwhile;
+            
+            // _log(count($related_artist_matches));
+            
+            // Write matching posts to page
+            // Using custom array with WP_Post_Object
+            if ( count($related_artist_matches) > 0 ) {
                 
-                if ( $relatedArtistMatchCount === 1 ) {
+                // _log($related_artist_matches);
     ?>
                 <!-- Related Blog Posts Column -->
                 <div class="blog column">
@@ -301,25 +307,17 @@
                     <!-- Header -->
                     <h3>Related News</h3>
     <?php
-                }
-                
-                if ( $relatedArtistMatchCount >= 1 ) {
+                foreach ( $related_artist_matches as $related_artist_match ) :
     ?>
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-                    <p><?php the_date('n/d'); ?></p>
+                    <a href="<?php echo $related_artist_match->guid; ?>" title="<?php echo $related_artist_match->post_title; ?>"><?php echo $related_artist_match->post_title; ?></a>
+                    <p><?php echo date('n/d', strtotime($related_artist_match->post_date)); ?></p>
     <?php
-                }
-                
-                if ( $relatedArtistMatchCount === 1 ) {
+                endforeach;
     ?>
-                </div>
+            </div>
     <?php
-                }
-            endwhile;
-            
+            }
         }
-        
-        wp_reset_postdata();
     ?>
     
     <?php
