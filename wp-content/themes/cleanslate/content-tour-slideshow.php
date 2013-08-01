@@ -19,50 +19,33 @@
     
     // The Loop
     if ( $artist_query->have_posts() ) :
-        
-        $onTourCount = 0;
 ?>
         <!-- On Tour Slideshow -->
-        <div id="on-tour-slideshow" class="block">
-        
+        <div id="on-tour-slideshow-container">
+            <div id="on-tour-slideshow">
 <?php
-        while ( $artist_query->have_posts() ) : $artist_query->the_post();
-            
-            $onTour = get_field('on_tour');
-            
-            if( $onTour === true ) {
-                $onTourClass = 'on-tour';
-?>
-            
-            <!-- Artist: <?php the_title(); ?> -->
-            <article id="post-<?php the_ID(); ?>" class="<?php echo $onTourClass; ?>">
+            while ( $artist_query->have_posts() ) : $artist_query->the_post();
+                $band = get_the_title();
+                $bandSlug = rawurlencode(strtolower($band));
+                $thumb = get_thumbnail_custom($post->ID, 'artist-thumbnail');
                 
-                <!-- Artist Link -->
-                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-                    
-                    <!-- Artist Thumbnail -->
-                    <figure>
-                <?php
-                    $thumb = get_thumbnail_custom($post->ID, 'artist-thumbnail');
-                    
-                    if( $thumb ) {
-                        echo '<img src="' . $thumb[0] . '" width="356" height="248" alt="' . get_the_title() . '"/>';
-                    }
-                ?>
-                    </figure>
-                
-                </a>
-            </article>
-            
-<?php
-                $onTourCount++;
+                if( $thumb ) {
+                    $source = $thumb[0];
+                } else {
+                    $source = '';
+                }
 ?>
-        </div><!-- #on-tour-slideshow -->
+                    <img src="<?php echo $source; ?>" width="356" height="248" alt="<?php the_title(); ?>" class="artist" data-band="<?php echo $bandSlug; ?>" data-id="<?php echo $post->ID; ?>" />
+<?php            
+            endwhile;
+?>
+            </div><!-- #on-tour-slideshow -->
+            <div id="slideshow-caption">
+                <p class="current"></p>
+            </div>
+        </div><!-- #on-tour-slideshow-container -->
 <?php
-            }
-            
-        endwhile;
     else :
-        
+        // do nothing
     endif;
 ?>
