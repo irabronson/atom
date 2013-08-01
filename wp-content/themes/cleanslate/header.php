@@ -55,9 +55,19 @@
             <script src="<?php echo get_template_directory_uri(); ?>/js/twitterfeed.js" type="text/javascript"></script>
             <script src="<?php echo get_template_directory_uri(); ?>/js/tour-dates.js" type="text/javascript"></script>
         <?php
-            if( is_home() || is_page('home') || is_category('artists') ) {
+            if( is_home() || is_page('home') || is_category('artists') || is_page('about') ) {
         ?>
             <script src="<?php echo get_template_directory_uri(); ?>/js/tour-dates-check.js" type="text/javascript"></script>
+        <?php
+            }
+        ?>
+        
+        <?php
+            if( is_page('about') ) {
+        ?>
+            <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.cycle.all.js" type="text/javascript"></script>
+            <script src="<?php echo get_template_directory_uri(); ?>/js/on-tour-slideshow.js" type="text/javascript"></script>
+            
         <?php
             }
         ?>
