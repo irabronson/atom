@@ -222,3 +222,38 @@ body.page-about #text {
     text-align: left;
     float: left;
 }
+
+body.page-about #on-tour-slideshow-container {
+    display: none;
+    position: relative;
+}
+
+body.page-about #on-tour-slideshow {
+    width: 356px;
+    height: 248px;
+}
+
+body.page-about #on-tour-slideshow .artist {
+    display: none;
+}
+
+body.page-about #on-tour-slideshow .artist.on-tour {
+    display: block;
+    width: 356px;
+    height: 248px;
+    background-color: #222222;
+    position: absolute;
+}
+
+
+body.page-about #slideshow-caption .next {
+    display: none;
+}
+
+body.page-about #slideshow-caption .current,
+body.page-about #slideshow-caption .next {
+    position: absolute;
+    top: 50px;
+    left: 150px;
+    z-index: 100;
+}
