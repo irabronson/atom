@@ -10,7 +10,7 @@ var tourDatesFeed = function(callback, currentBand) {
         callback(feeds, currentBand);
         
     }).error(function(jqXHR, textStatus, errorThrown) {
-        alert(textStatus + " - " + errorThrown);
+        // alert(textStatus + " - " + errorThrown);
     });
     
 };
@@ -33,7 +33,7 @@ var tourDatesManualCheck = function(callback, currentBand, currentID) {
         callback(onTour, currentBand, data);
         
     }).error(function(jqXHR, textStatus, errorThrown) {
-        alert(textStatus + " - " + errorThrown);
+        // alert(textStatus + " - " + errorThrown);
     });
     
 };
