@@ -6,12 +6,15 @@ $j(document).ready(function() {
     
     var onTourCount = 0;
     
+    var artistsCount = 1;
+    
     // Label the band if on tour
     var labelOnTour = function(onTour, currentBand) {
         
+        var artistSelector = '.artist[data-band="' + currentBand + '"]';
+        
         // Add .on-tour class to bands on tour
         if( onTour === true ){
-            var artistSelector = '.artist[data-band="' + currentBand + '"]';
             $j(artistSelector).addClass('on-tour');
             
             onTourCount++;
@@ -22,6 +25,17 @@ $j(document).ready(function() {
         if( $j('body.home .on-tour-symbol').length > 0 && onTourCount === 1 ) {
             $j('body.home .on-tour-symbol').show();
         }
+        
+        // At the end of the Artists elements in page
+        if( $j('.artist').length === artistsCount ) {
+            
+            // Applies to On Tour Slideshow using Cycle plugin
+            if( $j('#on-tour-slideshow').length > 0 ) {
+                startTourSlideshow();
+            }
+        }
+        
+        artistsCount++;
     };
     
     // Success callback for tourDatesFeed() function
@@ -33,6 +47,7 @@ $j(document).ready(function() {
             var onTour = true;
             
             labelOnTour(onTour, currentBand);
+            
         } else {
             // Check for manually added tour dates
             var currentID = artists[currentBand]['id'];
@@ -57,11 +72,11 @@ $j(document).ready(function() {
             
             // Run external function with tourDatesCheck as callback
             tourDatesFeed(tourDatesFeedCheck, currentBand);
+            
         });
-        
     };
     
-    // Only runs on the home page
+    // Only runs on the home, artists and about page
     checkOnTour();
     
 });
