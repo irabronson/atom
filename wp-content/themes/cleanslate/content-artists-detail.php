@@ -116,8 +116,8 @@
         // Check for press materials
         
         $pressMaterials = get_field('press_materials');
-        
-        if( $pressMaterials['press_material_title'] != '' && $pressMaterials['press_material_file'] != '' ) {
+            
+        if( empty($pressMaterials) != 1 ) {
     ?>
         <!-- Press Materials -->
         <h3>Download Press Materials</h3>
@@ -184,7 +184,7 @@
         
         $pressClips = get_field('press_clips');
         
-        if( $pressClips['press_quote'] != '' || $pressClips['press_author'] != '' || $pressClips['press_link'] != '' ) {
+        if( empty($pressClips) != 1 ) {
     ?>
     
     <!-- Press Clips Column -->
@@ -277,7 +277,7 @@
         if( $related_artists->have_posts() ) {
             
             $related_artist_matches = array();
-            _log($related_artists);
+            
             // Find posts that match to this artist
             while ( $related_artists->have_posts() ) : $related_artists->the_post();
                 
@@ -293,13 +293,9 @@
                 
             endwhile;
             
-            // _log(count($related_artist_matches));
-            
             // Write matching posts to page
             // Using custom array with WP_Post_Object
             if ( count($related_artist_matches) > 0 ) {
-                
-                // _log($related_artist_matches);
     ?>
                 <!-- Related Blog Posts Column -->
                 <div class="blog column">
