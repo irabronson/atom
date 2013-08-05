@@ -21,6 +21,10 @@ get_header(); ?>
                     $template = 'home';
                 elseif( is_page('about') ) :
                     $template = 'about';
+                elseif( is_page('testimonials') ) :
+                    $template = 'testimonials';
+                elseif( is_page('services') ) :
+                    $template = 'services';
                 else :
                     $template = 'page';
                 endif;
