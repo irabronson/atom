@@ -73,7 +73,7 @@
             <!-- About -->
             <a href="<?php echo get_page_link(12); ?>">About</a>
             <!-- Blog -->
-            <a href="<?php echo get_page_link(9); ?>">Blog</a>
+            <a href="<?php echo get_category_link(8); ?>">Blog</a>
         <li>
     </ul>
 </section>
