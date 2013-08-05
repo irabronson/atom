@@ -15,7 +15,7 @@
         
         if ( have_posts() ) :
             
-            include('content.php');
+            include('content-blog.php');
                 
         else :
             // Content Not Found Template
