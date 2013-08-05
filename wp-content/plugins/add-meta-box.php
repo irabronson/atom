@@ -121,7 +121,7 @@ function related_artists_meta_box( $object, $box ) {
 /* Save the meta box's post metadata. */
 function save_related_artists_meta() {
     global $post;
-    $post_id = $post->ID;
+    $post_id = ($post) ? $post->ID : '';
     
     // _log('Save Post');
     // _log($post_id);
