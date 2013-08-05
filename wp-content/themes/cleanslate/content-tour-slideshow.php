@@ -35,7 +35,9 @@
                     $source = '';
                 }
 ?>
-                    <img src="<?php echo $source; ?>" width="356" height="248" alt="<?php the_title(); ?>" class="artist" data-band="<?php echo $bandSlug; ?>" data-id="<?php echo $post->ID; ?>" />
+                <a href="<?php the_permalink(); ?>" class="artist" data-band="<?php echo $bandSlug; ?>" data-id="<?php echo $post->ID; ?>">
+                    <img src="<?php echo $source; ?>" width="356" height="248" alt="<?php the_title(); ?>" />
+                </a>
 <?php            
             endwhile;
 ?>
