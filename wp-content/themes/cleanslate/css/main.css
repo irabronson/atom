@@ -223,20 +223,22 @@ body.page-about #text {
     float: left;
 }
 
+/* On Tour Slideshow Widget
+-------------------------------------------------------------- */
+body.single.blog #on-tour-slideshow-container,
 body.page-about #on-tour-slideshow-container {
-    display: none;
+    visibility: hidden;
     position: relative;
-}
-
-body.page-about #on-tour-slideshow {
     width: 356px;
     height: 248px;
 }
 
+body.single.blog #on-tour-slideshow .artist,
 body.page-about #on-tour-slideshow .artist {
     display: none;
 }
 
+body.single.blog #on-tour-slideshow .artist.on-tour,
 body.page-about #on-tour-slideshow .artist.on-tour {
     display: block;
     width: 356px;
@@ -245,11 +247,13 @@ body.page-about #on-tour-slideshow .artist.on-tour {
     position: absolute;
 }
 
-
+body.single.blog #slideshow-caption .next,
 body.page-about #slideshow-caption .next {
     display: none;
 }
 
+body.single.blog #slideshow-caption .current,
+body.single.blog #slideshow-caption .next,
 body.page-about #slideshow-caption .current,
 body.page-about #slideshow-caption .next {
     position: absolute;
