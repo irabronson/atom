@@ -1,7 +1,7 @@
 var startTourSlideshow = function() {
     
     // Remove null elements
-    $j.each($j('#on-tour-slideshow img'), function() {
+    $j.each($j('#on-tour-slideshow .artist'), function() {
         if ( $j(this).hasClass('on-tour') ) {
             // do nothing
         } else {
@@ -30,5 +30,6 @@ var startTourSlideshow = function() {
     });
     
     // Initially was hidden in CSS
-    $j('#on-tour-slideshow-container').show();
+    $j('#on-tour-slideshow-container').css('visibility', 'visible');
+    
 };
