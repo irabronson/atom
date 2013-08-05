@@ -14,7 +14,9 @@
     <?php
         
         if ( have_posts() ) :
-            
+    ?>
+            <h3>Posts Tagged with <?php single_tag_title(); ?></h3>
+    <?php
             while ( have_posts() ) : the_post();
                 get_template_part('content', 'blog');
             endwhile;
