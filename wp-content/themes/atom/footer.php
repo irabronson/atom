@@ -11,9 +11,9 @@
  */
 ?>
 	</div><!-- #main .wrapper -->
-	<footer id="colophon" role="contentinfo">
+	<footer id="footer" role="contentinfo">
 		
-	</footer><!-- #colophon -->
+	</footer><!-- #footer -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
