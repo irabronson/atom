@@ -13,6 +13,7 @@ wp-content/cache/
 wp-content/backups/
 sitemap.xml
 sitemap.xml.gz
+dev-backup-April22/
 
 # Mac OS
 .DS_Store
